@@ -12,8 +12,8 @@ const gallery = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
-function createGalleryMarkup(items) {
-  return items
+function createGalleryMarkup(item) {
+  return item
     .map(
       ({ preview, original, description }) =>
         `<a class="gallery__item" href="${original}">

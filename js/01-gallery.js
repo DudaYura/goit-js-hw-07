@@ -6,18 +6,8 @@ const galleryMarkupRef = createGalleryMarkup(galleryItems);
 galleryRef.innerHTML = galleryMarkupRef;
 galleryRef.addEventListener('click', onGalleryItemClick);
 
-function onGalleryItemClick(evt) {
-  evt.preventDefault();
-
-  if (evt.target.nodeName !== 'IMG') return;
-
-  const originalUrl = getOriginalUrl(evt.target);
-
-  openOriginalImg(originalUrl);
-}
-
-function createGalleryMarkup(items) {
-  return items
+function createGalleryMarkup(item) {
+  return item
     .map(
       ({ preview, original, description }) =>
         `<div class="gallery__item">
@@ -34,8 +24,18 @@ function createGalleryMarkup(items) {
     .join('');
 }
 
-function getOriginalUrl(elem) {
-  return elem.dataset.source;
+function onGalleryItemClick(evt) {
+  evt.preventDefault();
+
+  if (evt.target.nodeName !== 'IMG') return;
+
+  const originalUrl = getOriginalUrl(evt.target);
+
+  openOriginalImg(originalUrl);
+}
+
+function getOriginalUrl(element) {
+  return element.dataset.source;
 }
 
 function openOriginalImg(originalUrl) {
